@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue Test</title>
+<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app">
+    <p>When the page loads, the input element automatically gets the focus:</p>
+    <input v-focus>
+</div>
+
+<script>
+const app = {
+   data() {
+      return {
+      }
+   },
+   directives: {
+      focus: {
+         // Definition of instructions
+         mounted(el) {
+            el.focus()
+         }
+      }
+   }
+}
+ 
+Vue.createApp(app).mount('#app')
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>info-show</title>
+		<style>
+		</style>
+	</head>
+	  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url("./sky.jpg") no-repeat;
+      background-size: 100% 100%;
+      background-position: 0 0;
+    }
+    h1 {
+      color: #fff;
+    }
+    button {
+      width: 120px;
+      height: 30px;
+    }
+    .login_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: top;
+      border: 1px solid #eee;
+      width: 500px;
+      padding: 50px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #5f9ea0ad;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 300px;
+      height: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+	<body>
+		
+		<table width="800" align="center" border="1">
+			<tr>
+				<th colspan="7" align="left" bgcolor="#E6E6FA" id="dateId">2021-4-23 17:10:00</th>
+			</tr>
+			<tr>
+				<th colspan="7" bgcolor="#E6E6FA">my cv</th>
+			</tr>
+			<tr>
+				<th bgcolor="#E6E6FA">name:</th>
+				<td id="nameId">nameId</td>
+				<th bgcolor="#E6E6FA">age：</th>
+				<td><input type="text" id="ageId" value="18" /> </td>
+				<th bgcolor="#E6E6FA">nationality :</th>
+				<td>hui</td>
+				<td rowspan="3" align="center">		
+					<img src="people.jpg"   width="108" height="148" />					
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="#E6E6FA">date of birth：</th>
+				<td>2002.11.7</td>
+				<th bgcolor="#E6E6FA">political status ：</th>
+				<td></td>
+				<th bgcolor="#E6E6FA">Education：</th>
+				<td>Undergraduate</td>
+			</tr>
+			<tr>
+				<th bgcolor="#E6E6FA">major：</th>
+				<td>Logistics </td>
+				<th bgcolor="#E6E6FA">university：</th>
+				<td>my university：</td>
+				<th bgcolor="#E6E6FA">post code ：</th>
+				<td>10010</td>
+			</tr>
+			<tr>
+				<th bgcolor="#E6E6FA">hobbby：</th>
+				<td>Reading and listening to music </td>
+				<th bgcolor="#E6E6FA">Hometown ：</th>
+				<td>Shandong </td>
+				<th bgcolor="#E6E6FA">email：</th>
+				<td colspan="2"><p><a href="https://mail.bjtu.edu.cn/">20522239@bjtu.edu.cn</a></p></td>
+			</tr>
+			<tr>
+				<th height="160" bgcolor="#E6E6FA">personal strength ：</th>
+				<td colspan="6">
+					<p>
+						first line
+					</p>
+					<p>
+						second line
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+		<script type="text/javascript">
+			
+			document.getElementById("nameId").innerHTML = "yang"
+			
+			var i=1
+			setInterval(function(){
+				if( i== 0){
+					document.getElementById("nameId").innerHTML = "yang"
+					i=1
+				}else if(i == 1){
+					document.getElementById("nameId").innerHTML = "yang"
+					i=0
+				}
+			},1000)
+			
+			function showDate(){
+			    var date = new Date()
+			    var year = date.getFullYear();
+			    var mon = date.getMonth() + 1;
+			    var day = date.getDate();
+			    
+			    var hour = date.getHours();
+			    var min = date.getMinutes();
+			    var sec = date.getSeconds();
+			    
+			    var d = year + "-" + mon + "-" + day + " " + hour + ":" + min + ":" + sec
+			    //console.log(d)
+			    //alert(d) 
+			    document.getElementById("dateId").innerHTML = d
+			}
+			showDate()
+			
+			setInterval(function(){
+				showDate()
+			},1000)
+			
+			//<input type="text" id="ageId" value="18" />
+			document.getElementById("ageId").value = 18
+			
+		</script>
+		
+	</body>
+	
+</html>

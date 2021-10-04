@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="view" >
+    <title>ContactUs</title>
+</head>
+<body background="star.jpeg">
+    <div class="back-logo"><img src="back-logo.png" alt="something wrong"></div>
+	<div class="major" align="center">
+		<a href="#"><h1>Back</h1></a>
+	</div>
+    <div class="ground">  
+        <div class="imput">
+            <input id= "name" type="text" placeholder="your name">
+            <input id="phoneNumber" type="text" placeholder="your phone number">
+			<textarea id="advice" rows="3" cols="20" placeholder="your advice">
+			</textarea>
+            <button @onclick="getInfo">send</button>
+        </div>
+    </div>
+</body>
+<script>
+function getInfo() {
+	var website = "contactUs";
+	var character = website[0];
+	var Username = document.getElementById("name").value;
+	var Password = document.getElementById("phoneNumber").value;
+	var advice = document.getElementById("advice").value;
+	console.log("advice is ");
+	console.log(advice);
+}
+</script>
+    <style>
+        .back-logo {
+			height: 93px;
+            width: 95px;
+            margin: 22px auto;
+        }
+        .ground {
+            margin: 0 auto;
+            width: 380px;
+            background-color: #fff;
+            padding: 38px 0 22px;
+            font-size: 12px;
+            color: #987;
+            border-radius: 5px;
+        }
+        .ground input {
+            imput-sizing: border-imput;
+            display: block;
+            width: 305px;
+            height: 43px;
+            padding-left: 19px;
+            margin-bottom: 20px;
+            border:1px solid #cecece;
+            border-radius: 6px;
+        }
+        input::-webkit-input-placeholder {
+            color: #cecece;
+        }
+        .imput {
+            margin: 0 39px;
+        }
+        .imput button {
+            width: 300px;
+            background-color: #5193Fe;
+            color: #ffe;
+            text-align: center;
+            font-size: 20px;
+            line-height: 40px;
+            margin: 14px 0 30px;
+        }
+    </style>
+</html>

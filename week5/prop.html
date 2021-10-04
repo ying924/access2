@@ -1,0 +1,19 @@
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
+}
+
+<blog-post title="My journey with Vue"></blog-post>
+
+<!-- Dynamically assign the value of a variable -->
+<blog-post v-bind:title="post.title"></blog-post>
+
+<!-- Dynamically assign a value to a complex expression -->
+<blog-post
+  v-bind:title="post.title + ' by ' + post.author.name"
+></blog-post>

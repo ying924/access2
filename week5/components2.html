@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue Test</title>
+<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app">
+    <button-counter></button-counter>
+	<button-counter></button-counter>
+</div>
+
+<script>
+const app = Vue.createApp({})
+
+app.component('button-counter', {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  template: `
+    <button @click="count++">
+      number {{ count }} ！
+    </button>`
+})
+app.mount('#app')
+</script>
+</body>
+</html>

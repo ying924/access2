@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue Test</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.5/vue.global.js"></script>
+</head>
+<body>
+   <div id="app">
+	   <div v-runoob="{ name: 'google', url: 'www.google.com' }"></div>
+   </div>
+
+<script>
+const app = Vue.createApp({})
+app.directive('runoob', (el, binding, vnode) => {
+  console.log(binding.value.name) // => "google"
+  console.log(binding.value.url) // => "www.google.com"
+  var s = JSON.stringify
+  el.innerHTML = s(binding.value)
+})
+app.mount('#app')
+</script>
+</body>
+</html>

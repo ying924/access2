@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue Test</title>
+<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app">
+    <p>When the page loads, the input element automatically gets the focus:</p>
+    <input v-focus>
+</div>
+
+<script>
+const app = Vue.createApp({})
+// Register a global custom instruction `v-focus`
+app.directive('focus', {
+  // When the bound element is mounted in the DOM……
+  mounted(el) {
+    // Focus element
+    el.focus()
+  }
+})
+app.mount('#app')
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+//local component being registered as a JS variable
+ var doubleCount = {
+ template: '<button @click=count++>{{count}}</button>',
+ data () {
+ return {
+ count: 0
+ }
+ }
+ }
+ //global component registration(usable anywhere)
+ Vue.component('click-counter', {
+ template: '<button @click=count++>{{count}}</button>',
+ data () {
+ return {
+ count: 0
+ }
+ }
+ })
+ 
+ new Vue({
+ el: '#app',
+ //inclusion of local component to be usable in 'app'
+ components: {
+ 'double-clicker': doubleCount
+ }
+ })

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      /* background-color: bisque; */
+      background: url('./sky.jpg') no-repeat;
+      background-size: 100% 100%;
+      background-position: 0 0;
+    }
+    button {
+      width: 120px;
+      height: 30px;
+    }
+    .bt_container {
+      width: 366px;
+      margin: 0 auto;
+      /* text-align: center; */
+      margin-top: 20px;
+    }
+  </style>
+  <body bgcolor="bisque">
+    <table border="1" cellspacing="" cellpadding="" align="center" >
+      <!--<tr colspan=1>-->
+      <tr align="center">
+        <th align="center"><h1>edit</h1></th>
+      </tr>
+      <tr>
+        <td>number</td>
+        <td><input type="text" name="" id="number_id" value="" /></td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td><input type="text" name="" id="name" value="" /></td>
+      </tr>
+      <tr>
+        <td>gender</td>
+        <td>
+          <select name="" id="gender">
+            <option value ="man">male</option>
+            <option value ="woman">female</option>
+          </select>
+        </td>
+        <!--<td><input type="text" name="" id="gender" value="" /></td>-->
+      </tr>
+      <tr>
+        <td>phone</td>
+        <td><input type="text" name="" id="phone" value="" /></td>
+      </tr>
+      <tr>
+        <td>website</td>
+        <td><input type="text" name="" id="website" value="" /></td>
+      </tr>
+      <tr>
+        <td>school</td>
+        <td>
+          <select name="" id="academy">
+          </select>
+        </td>
+        <!--<td><input type="text" name="" id="academy" value="" /></td>-->
+      </tr>
+      <tr>
+        <td>email</td>
+        <td><input type="text" name="" id="email" value="" /></td>
+      </tr>
+      <tr>
+        <td>evaluation</td>
+        <td><input type="text" name="" id="evaluation" value="" /></td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td><input type="date" name="" id="birth" value="" /></td>
+      </tr>
+      <!-- <tr>
+        <td colspan="2">
+          
+        </td>
+      </tr> -->
+    </table>
+    <div class="bt_container">
+      <button type="button" onclick="edit()">submit</button>
+    </div>
+    <script Charset="UTF-8" type="text/javascript">
+      function init(){
+          
+          var action = "select";
+          var url = "http://127.0.0.1:8080/WebCase/student?action=" + action
+              + "&s_id=" + window.localStorage.getItem("username");
+          url=encodeURI(encodeURI(url));
+          ajaxPost(url, "", callBack);
+      }
+
+      function ajaxPost(url, data, callBack) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type",
+              "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+              if (xhr.status == 200 && xhr.readyState == 4) {
+                  callBack(xhr.responseText)
+              }
+          };
+          xhr.send(data);
+      }
+
+      function callBack(data) {
+          console.log("data:" + data);
+          var json = JSON.parse(data);
+          var code = json.code;
+          if (code == 1) {
+              var stuInfo = json.stuInfo;
+              if(json.academys != null){
+            	  setAcademySelect(json.academys, stuInfo.academy_id);
+              }
+              //var academys = json.academys;
+
+              var number_id = window.localStorage.getItem("username");
+              document.getElementById("number_id").value = number_id;
+              stuInfo.s_name = decodeURI(stuInfo.s_name);
+              //document.getElementById('name').value = stuInfo.s_name;
+              stuInfo.s_name = "杨嘉雯";
+              document.getElementById('name').value = stuInfo.s_name;
+              document.getElementById('gender').value = stuInfo.s_gender;
+              document.getElementById('birth').value = stuInfo.date_of_birth;
+              document.getElementById('phone').value = stuInfo.s_phone;
+              document.getElementById('website').value = stuInfo.s_website;
+              document.getElementById('email').value = stuInfo.s_email;
+              document.getElementById('academy').value = stuInfo.academy_id;
+              stuInfo.self_evaluation = decodeURI(stuInfo.self_evaluation);
+              document.getElementById('evaluation').value = stuInfo.self_evaluation;
+              
+
+          }
+      }
+      
+      function setAcademySelect(academys, academy_id){
+          for (var i=0;i<academys.length;i++)
+          {
+              var newOption = document.createElement("option");
+              newOption.text=academys[i].academy_name;
+              newOption.value=academys[i].academy_id;
+              document.getElementById("academy").add(newOption);
+          }
+          document.getElementById('academy').value = academy_id;
+      }
+      
+
+      init();
+      function edit() {
+        var number_id = document.getElementById("number_id").value;
+        var name = document.getElementById("name").value;
+        var birth = document.getElementById("birth").value;
+        window.localStorage.setItem("number_id", number_id);
+        window.localStorage.setItem("name", name);
+        window.localStorage.setItem("birth", birth);
+
+        var gender = document.getElementById("gender").value;
+        var phone = document.getElementById("phone").value;
+        var website = document.getElementById("website").value;
+        var academy = document.getElementById("academy").value;
+        var evaluation = document.getElementById("evaluation").value;
+        var email = document.getElementById("email").value;
+        window.localStorage.setItem("gender", gender);
+        window.localStorage.setItem("phone", phone);
+        window.localStorage.setItem("website", website);
+        window.localStorage.setItem("academy", academy);
+        window.localStorage.setItem("evaluation", evaluation);
+        window.localStorage.setItem("email", email);
+
+        var action = "update";
+        var url = "http://127.0.0.1:8080/WebCase/student?action=" + action + "&s_id=" + number_id + "&s_gender=" + gender + "&date_of_birth=" + birth + "&academy_id=" + academy + "&s_phone=" + phone + "&s_website=" + website + "&self_evaluation=" + evaluation + "&s_email=" + email;
+        url=encodeURI(encodeURI(url));
+        ajaxPost(url, "", callBack);
+        window.location.href = "user.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+<style type="text/css">
+h1 {color: red}
+p {color: blue}
+</style>
+</head>
+<body>
+<h1>vue test</h1>
+<div id="todo">
+	<ul>
+		<li v-for='toDo in toDoList'>
+			<input type="checkbox"><span>{{myTodo}}</span>
+		</li>
+	</ul>
+</div>
+<script src="https:cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<script>
+ toDoList = [
+ 	{text:"myTodo", selected:false},
+ ]
+ new Vue({
+ el: "#todo",
+ data: toDoList
+ })
+</script>
+</body>
+</html>
